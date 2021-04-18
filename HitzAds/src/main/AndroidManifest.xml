@@ -3,7 +3,8 @@
     package="com.excyn.hitzads">
 
     <application>
-        <activity android:name="com.excyn.hitzads.Handler.FullscreenAdHandler" />
+        <activity android:name="com.excyn.hitzads.Handler.FullscreenAdHandler"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
     </application>
 
 </manifest>

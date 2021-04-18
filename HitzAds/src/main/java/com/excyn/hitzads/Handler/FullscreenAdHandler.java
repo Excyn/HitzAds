@@ -11,6 +11,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -32,6 +34,7 @@ import com.excyn.hitzads.Request.AdRequest;
 public class FullscreenAdHandler extends AppCompatActivity {
 
     private static AdObject adObject;
+    private static Activity activity;
 
     private static IAdEventListener adEventListener;
     private LinearLayout fullImageLayout, fullVideoBody;
@@ -45,7 +48,13 @@ public class FullscreenAdHandler extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature( Window.FEATURE_NO_TITLE );
+        getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN );
         bindViews();
+    }
+
+    public void initiateFullScreenAds(Activity activity){
+        this.activity = activity;
     }
 
     @Override
@@ -110,13 +119,19 @@ public class FullscreenAdHandler extends AppCompatActivity {
         adRequest.fetchAdList();
     }
 
-    public void showAd(Activity activity){
+    public void showAd(){
         if(adObject!=null) {
             if (adEventListener != null) {
                 adEventListener.onAdOpened();
             }
-            Intent intent = new Intent(activity, FullscreenAdHandler.class);
-            activity.startActivity(intent);
+            if(this.activity!=null) {
+                Intent intent = new Intent(this.activity, FullscreenAdHandler.class);
+                this.activity.startActivity(intent);
+            }else{
+                if (adEventListener != null) {
+                    adEventListener.onAdFailedToLoad("AdHandler is not initiated yet");
+                }
+            }
         }else{
             if (adEventListener != null) {
                 adEventListener.onAdFailedToLoad("Loading Failed");
