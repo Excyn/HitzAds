@@ -136,7 +136,7 @@ Following json array is an example with 4 ad objects for all 4 types of supporti
 	    "adType": "BANNER_TEXT",
 	    "title": "banner text ad",
 	    "body": "body1",
-	    "image_url": "https://github.com/Excyn/HitzAds/blob/main/logo.JPG",
+	    "image_url": "https://raw.githubusercontent.com/Excyn/HitzAds/main/logo.JPG",
 	    "video_url": "",
 	    "link": "https://github.com/Excyn/HitzAds",
 	    "button_text": "",
@@ -148,7 +148,7 @@ Following json array is an example with 4 ad objects for all 4 types of supporti
 	    "adType": "BANNER_LARGE_TEXT",
 	    "title": "banner large text ad",
 	    "body": "body2",
-	    "image_url": "https://picsum.photos/100/100",
+	    "image_url": "https://raw.githubusercontent.com/Excyn/HitzAds/main/logo.JPG",
 	    "video_url": "",
 	    "link": "https://github.com/Excyn/HitzAds",
 	    "button_text": "",
@@ -191,7 +191,7 @@ Following json array is an example with 2 ad objects for all 2 types of supporti
 	    "adType": "FULLSCREEN_IMAGE",
 	    "title": "fullscreen text ad",
 	    "body": "This is the Ad Body text",
-	    "image_url": "https://picsum.photos/512/512",
+	    "image_url": "https://raw.githubusercontent.com/Excyn/HitzAds/main/logo.JPG",
 	    "video_url": "",
 	    "link": "https://github.com/Excyn/HitzAds",
 	    "button_text": "Download",
@@ -211,3 +211,8 @@ Following json array is an example with 2 ad objects for all 2 types of supporti
 	    "button_text_color": "#ffffff"
 	  }
 	]
+	
+## Finally Run - Demo App can be run from this Repo 
+
+![Demo App](https://raw.githubusercontent.com/Excyn/HitzAds/main/Demo.jpeg)
+
