@@ -125,7 +125,7 @@ public class AdRequest {
     public AdObject getFullScreenAdObject(){
         if(fullscreenAdObjects.size()>0){
         Random rand = new Random();
-        int id = rand.nextInt(fullscreenAdObjects.size() - 0 + 1) + 0;
+        int id = rand.nextInt(fullscreenAdObjects.size() -1 - 0 + 1) + 0;
         return fullscreenAdObjects.get(id);
         }else{
             return null;
@@ -135,7 +135,7 @@ public class AdRequest {
     public AdObject getBannerAdObject(){
         if(bannerAdObjects.size()>0) {
             Random rand = new Random();
-            int id = rand.nextInt(bannerAdObjects.size() - 0 + 1) + 0;
+            int id = rand.nextInt(bannerAdObjects.size() -1 - 0 + 1) + 0;
             return bannerAdObjects.get(id);
         }else{
             return null;
