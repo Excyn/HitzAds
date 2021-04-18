@@ -1,6 +1,8 @@
 # HitzAds
 HitzAds - An Android Library for Mobile Ads
 
+This Library can be used to run house ads promoting your apps, websites, or in-app content to existing app users. 
+
 HitzAds currently support following types of ads
 
     * BANNER_TEXT
