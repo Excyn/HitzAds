@@ -6,5 +6,6 @@ public interface IAdEventListener {
     public void onAdFailedToLoad(String error);
     public void onAdOpened();
     public void onAdClicked();
+    public void onAdSkipped();
     public void onAdClosed();
 }

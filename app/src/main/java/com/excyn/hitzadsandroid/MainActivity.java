@@ -45,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
+            public void onAdSkipped() {
+                Log.d("HitzAdEvent","skipped");
+            }
+
+            @Override
             public void onAdClosed() {
                 Log.d("HitzAdEvent","closed");
             }
@@ -80,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onAdClicked() {
                         Log.d("HitzAdEvent","clicked");
+                    }
+
+                    @Override
+                    public void onAdSkipped() {
+                        Log.d("HitzAdEvent","skipped");
                     }
 
                     @Override

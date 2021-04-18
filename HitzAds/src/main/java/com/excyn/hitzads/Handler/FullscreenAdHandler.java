@@ -211,16 +211,19 @@ public class FullscreenAdHandler extends AppCompatActivity {
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(adEventListener!=null) {
-                        adEventListener.onAdClosed();
-                    }
                     if(closeBtn.getText().equals("X")) {
                         finish();
+                        if(adEventListener!=null) {
+                            adEventListener.onAdClosed();
+                        }
                     }
                     if(closeBtn.getText().equals(">>")) {
                         fullscreenVideo.pause();
                         closeBtn.setText("X");
                         fullVideoBody.setVisibility(View.VISIBLE);
+                        if(adEventListener!=null) {
+                            adEventListener.onAdSkipped();
+                        }
                     }
                 }
             });
