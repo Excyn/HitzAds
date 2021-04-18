@@ -57,13 +57,6 @@ public class FullscreenAdHandler extends AppCompatActivity {
         this.activity = activity;
     }
 
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-        finish();
-
-    }
-
     private void bindViews() {
         setContentView(R.layout.hitz_fullscreen_ad);
 
@@ -172,7 +165,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                     if(adEventListener!=null) {
                         adEventListener.onAdClosed();
                     }
-                    finish();
+                    onBackPressed();
                 }
             });
 
@@ -212,7 +205,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(closeBtn.getText().equals("X")) {
-                        finish();
+                        onBackPressed();
                         if(adEventListener!=null) {
                             adEventListener.onAdClosed();
                         }
