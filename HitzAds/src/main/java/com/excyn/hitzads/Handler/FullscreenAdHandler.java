@@ -56,6 +56,11 @@ public class FullscreenAdHandler extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        //Do nothing
+    }
+
     public void initiateFullScreenAds(Activity activity){
         this.activity = activity;
     }
@@ -168,7 +173,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                     if(adEventListener!=null) {
                         adEventListener.onAdClosed();
                     }
-                    onBackPressed();
+                    finish();
                 }
             });
 
@@ -214,7 +219,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(closeBtn.getText().equals("X")) {
-                        onBackPressed();
+                        finish();
                         if(adEventListener!=null) {
                             adEventListener.onAdClosed();
                         }
