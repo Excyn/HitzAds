@@ -26,7 +26,7 @@ HitzAds currently support following types of ads
 ## Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.Excyn:HitzAds:6fbdd74e65'
+	        implementation 'com.github.Excyn:HitzAds:26abb3cfd7'
 	}
 
 ## Step 3 Build the project and start using
