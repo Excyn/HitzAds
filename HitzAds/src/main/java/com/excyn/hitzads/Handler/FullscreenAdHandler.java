@@ -1,20 +1,16 @@
 package com.excyn.hitzads.Handler;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -51,6 +47,13 @@ public class FullscreenAdHandler extends AppCompatActivity {
         requestWindowFeature( Window.FEATURE_NO_TITLE );
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN );
         bindViews();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        adObject.setVideo_url("");
+
     }
 
     public void initiateFullScreenAds(Activity activity){
@@ -174,8 +177,15 @@ public class FullscreenAdHandler extends AppCompatActivity {
             fullVideoLayout.setVisibility(View.VISIBLE);
 
             Log.d("HitzAds", adObject.getBody());
-            fullscreenVideo.setVideoURI(Uri.parse(adObject.getVideo_url()));
-            fullscreenVideo.start();
+            if(!adObject.getVideo_url().equals("")) {
+                fullscreenVideo.setVideoURI(Uri.parse(adObject.getVideo_url()));
+                fullscreenVideo.start();
+                closeBtn.setText(">>");
+            }else{
+                fullscreenVideo.setVisibility(View.GONE);
+                closeBtn.setText("X");
+                fullVideoBody.setVisibility(View.VISIBLE);
+            }
             adTitleVideo.setText(adObject.getTitle());
             adContentVideo.setText(adObject.getBody());
             adButtonVideo.setText(adObject.getButton_text());
@@ -191,7 +201,6 @@ public class FullscreenAdHandler extends AppCompatActivity {
                     }
                 }
             });
-            closeBtn.setText(">>");
             fullscreenVideo.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
                 @Override
