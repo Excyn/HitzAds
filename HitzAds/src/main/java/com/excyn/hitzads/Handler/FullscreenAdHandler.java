@@ -30,12 +30,12 @@ import com.excyn.hitzads.Request.AdRequest;
 public class FullscreenAdHandler extends AppCompatActivity {
 
     private static AdObject adObject;
-    private static Activity activity;
+    private Activity activity;
 
-    private static IAdEventListener adEventListener;
-    private LinearLayout fullImageLayout, fullVideoBody;
+    private IAdEventListener adEventListener;
+    private LinearLayout fullDownloadLayout, fullVideoBody, fullImageLayout;
     private RelativeLayout fullVideoLayout;
-    private ImageView fullscreenImage;
+    private ImageView fullscreenDownloadImage, fullscreenImage;
     private VideoView fullscreenVideo;
     private Button adButton,adButtonVideo,closeBtn;
     private TextView adTitle, adContent,adTitleVideo, adContentVideo;
@@ -68,11 +68,11 @@ public class FullscreenAdHandler extends AppCompatActivity {
     private void bindViews() {
         setContentView(R.layout.hitz_fullscreen_ad);
 
-        fullImageLayout = findViewById(R.id.fullscreen_image_text);
-        fullscreenImage = findViewById(R.id.fullscreen_image);
-        adTitle = findViewById(R.id.fullscreen_title);
-        adContent = findViewById(R.id.fullscreen_content);
-        adButton = findViewById(R.id.fullscreen_button);
+        fullDownloadLayout = findViewById(R.id.fullscreen_download);
+        fullscreenDownloadImage = findViewById(R.id.fullscreen_download_image);
+        adTitle = findViewById(R.id.fullscreen_download_title);
+        adContent = findViewById(R.id.fullscreen_download_content);
+        adButton = findViewById(R.id.fullscreen_download_button);
 
         fullVideoLayout = findViewById(R.id.fullscreen_video_ad);
         fullscreenVideo = findViewById(R.id.fullscreen_video);
@@ -80,6 +80,9 @@ public class FullscreenAdHandler extends AppCompatActivity {
         adContentVideo  = findViewById(R.id.fullscreen_video_content);
         adButtonVideo = findViewById(R.id.fullscreen_video_button);
         fullVideoBody = findViewById(R.id.fullscreen_video_body);
+
+        fullImageLayout = findViewById(R.id.fullscreen_image_view);
+        fullscreenImage = findViewById(R.id.fullscreen_image);
 
         closeBtn = findViewById(R.id.fullscreen_close);
 
@@ -143,12 +146,13 @@ public class FullscreenAdHandler extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (adObject.adType.equals(AdType.FULLSCREEN_IMAGE)) {
-            fullImageLayout.setVisibility(View.VISIBLE);
+        if (adObject.adType.equals(AdType.FULLSCREEN_DOWNLOAD)) {
+            fullDownloadLayout.setVisibility(View.VISIBLE);
+            fullImageLayout.setVisibility(View.GONE);
             fullVideoLayout.setVisibility(View.GONE);
 
             Log.d("HitzAds", adObject.getBody());
-            Glide.with(FullscreenAdHandler.this).load(adObject.getImage_url()).into(fullscreenImage);
+            Glide.with(FullscreenAdHandler.this).load(adObject.getImage_url()).into(fullscreenDownloadImage);
 
             adTitle.setText(adObject.getTitle());
             adContent.setText(adObject.getBody());
@@ -177,7 +181,37 @@ public class FullscreenAdHandler extends AppCompatActivity {
                 }
             });
 
+        } else if(adObject.adType.equals(AdType.FULLSCREEN_IMAGE)){
+            fullDownloadLayout.setVisibility(View.GONE);
+            fullImageLayout.setVisibility(View.VISIBLE);
+            fullVideoLayout.setVisibility(View.GONE);
+
+            Glide.with(FullscreenAdHandler.this).load(adObject.getImage_url()).into(fullscreenImage);
+            fullscreenImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(adObject.getLink()));
+                    startActivity(browserIntent);
+                    if(adEventListener!=null) {
+                        adEventListener.onAdClicked();
+                    }
+                }
+            });
+
+            closeBtn.setText("X");
+            closeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(adEventListener!=null) {
+                        adEventListener.onAdClosed();
+                    }
+                    finish();
+                }
+            });
+
+
         } else if (adObject.adType.equals(AdType.FULLSCREEN_VIDEO)) {
+            fullDownloadLayout.setVisibility(View.GONE);
             fullImageLayout.setVisibility(View.GONE);
             fullVideoLayout.setVisibility(View.VISIBLE);
 

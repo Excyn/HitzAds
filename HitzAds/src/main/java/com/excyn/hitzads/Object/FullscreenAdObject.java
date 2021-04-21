@@ -17,25 +17,31 @@ public class FullscreenAdObject extends AdObject{
         if(adType.equals(AdType.FULLSCREEN_IMAGE)){
             adObject.setAdId("1");
             adObject.setAdType(AdType.FULLSCREEN_IMAGE);
+            adObject.setImage_url("https://raw.githubusercontent.com/Excyn/HitzAds/main/logo.JPG");
+            adObject.setLink("https://github.com/Excyn/HitzAds");
+            return adObject;
+        }else if(adType.equals(AdType.FULLSCREEN_DOWNLOAD)){
+            adObject.setAdId("1");
+            adObject.setAdType(AdType.FULLSCREEN_DOWNLOAD);
             adObject.setTitle("Test Hitz Image Ad");
             adObject.setBody("This is Test Fullscreen Image Ad Body From HitzAd Server !! Yeah It works fine !! Here we can show longer content and also a customizable button below this text. Yeah it's a great feature");
-            adObject.setImage_url("https://images.squarespace-cdn.com/content/v1/58ab6de88419c2e78d86aae9/1566865224151-008W4IA6BUDI92ZFLV7M/ke17ZwdGBToddI8pDm48kGfiFqkITS6axXxhYYUCnlRZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxQ1ibo-zdhORxWnJtmNCajDe36aQmu-4Z4SFOss0oowgxUaachD66r8Ra2gwuBSqM/image-asset.png");
+            adObject.setImage_url("https://raw.githubusercontent.com/Excyn/HitzAds/main/logo.JPG");
             adObject.setButton_text("Install App");
             adObject.setButton_color("#FF7171");
             adObject.setButton_text_color("#ffffff");
-            adObject.setLink("https://www.hitxgh.com/");
+            adObject.setLink("https://github.com/Excyn/HitzAds");
             return adObject;
         }else if(adType.equals(AdType.FULLSCREEN_VIDEO)) {
             adObject.setAdId("1");
             adObject.setAdType(AdType.FULLSCREEN_VIDEO);
             adObject.setTitle("Test Hitz Video Ad");
             adObject.setBody("This is Test Fullscreen Video Ad Body From HitzAd Server !! Yeah It works fine !! Here we can show longer content and also a customizable button below this text. Yeah it's a great feature");
-            adObject.setImage_url("https://images.squarespace-cdn.com/content/v1/58ab6de88419c2e78d86aae9/1566865224151-008W4IA6BUDI92ZFLV7M/ke17ZwdGBToddI8pDm48kGfiFqkITS6axXxhYYUCnlRZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxQ1ibo-zdhORxWnJtmNCajDe36aQmu-4Z4SFOss0oowgxUaachD66r8Ra2gwuBSqM/image-asset.png");
-            adObject.setVideo_url("http://www.exit109.com/~dnn/clips/RW20seconds_1.mp4");
+            adObject.setImage_url("https://raw.githubusercontent.com/Excyn/HitzAds/main/logo.JPG");
+            adObject.setVideo_url("https://raw.githubusercontent.com/Excyn/HitzAds/main/hitzvideoAd.mp4");
             adObject.setButton_text("Install App");
             adObject.setButton_color("#FF7171");
             adObject.setButton_text_color("#ffffff");
-            adObject.setLink("https://www.hitxgh.com/");
+            adObject.setLink("https://github.com/Excyn/HitzAds");
             return adObject;
         }
         return null;
