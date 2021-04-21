@@ -9,6 +9,7 @@ HitzAds currently support following types of ads
     * BANNER_LARGE_TEXT
     * BANNER_IMAGE
     * BANNER_LARGE_IMAGE
+    * FULLSCREEN_DOWNLOAD
     * FULLSCREEN_IMAGE
     * FULLSCREEN_VIDEO
 
@@ -26,7 +27,7 @@ HitzAds currently support following types of ads
 ## Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.Excyn:HitzAds:26abb3cfd7'
+	        implementation 'com.github.Excyn:HitzAds:a4b551d53e'
 	}
 
 ## Step 3 Build the project and start using
@@ -190,7 +191,7 @@ Following json array is an example with 2 ad objects for all 2 types of supporti
 	[
 	  {
 	    "id": "1",
-	    "adType": "FULLSCREEN_IMAGE",
+	    "adType": "FULLSCREEN_DOWNLOAD",
 	    "title": "fullscreen text ad",
 	    "body": "This is the Ad Body text",
 	    "image_url": "https://raw.githubusercontent.com/Excyn/HitzAds/main/logo.JPG",
@@ -201,12 +202,24 @@ Following json array is an example with 2 ad objects for all 2 types of supporti
 	    "button_text_color": "#ffffff"
 	  },
 	  {
+	    "id": "1",
+	    "adType": "FULLSCREEN_IMAGE",
+	    "title": "",
+	    "body": "",
+	    "image_url": "https://raw.githubusercontent.com/Excyn/HitzAds/main/logo.JPG",
+	    "video_url": "",
+	    "link": "https://github.com/Excyn/HitzAds",
+	    "button_text": "",
+	    "button_color": "",
+	    "button_text_color": ""
+	  },
+	  {
 	    "id": "2",
 	    "adType": "FULLSCREEN_VIDEO",
 	    "title": "fullscreen large vide ad",
 	    "body": "This is the Ad Body text",
-	    "image_url": "https://picsum.photos/512/512",
-	    "video_url": "http://www.exit109.com/~dnn/clips/RW20seconds_1.mp4",
+	    "image_url": "https://raw.githubusercontent.com/Excyn/HitzAds/main/logo.JPG",
+	    "video_url": "https://raw.githubusercontent.com/Excyn/HitzAds/main/hitzvideoAd.mp4",
 	    "link": "https://github.com/Excyn/HitzAds",
 	    "button_text": "Download",
 	    "button_color": "#FF7171",
