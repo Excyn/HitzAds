@@ -70,6 +70,10 @@ public class AdRequest {
                                          adType = AdType.BANNER_LARGE_IMAGE;
                                          adObject = new BannerAdObject();
                                          break;
+                                     case "FULLSCREEN_DOWNLOAD":
+                                         adType = AdType.FULLSCREEN_DOWNLOAD;
+                                         adObject = new FullscreenAdObject();
+                                         break;
                                      case "FULLSCREEN_IMAGE":
                                          adType = AdType.FULLSCREEN_IMAGE;
                                          adObject = new FullscreenAdObject();
@@ -94,7 +98,7 @@ public class AdRequest {
                                     bannerAdObjects.add(adObject);
                                 }
 
-                                if(type.equals("FULLSCREEN_IMAGE") || type.equals("FULLSCREEN_VIDEO")){
+                                if(type.equals("FULLSCREEN_DOWNLOAD") || type.equals("FULLSCREEN_IMAGE") || type.equals("FULLSCREEN_VIDEO")){
                                     fullscreenAdObjects.add(adObject);
                                 }
 
