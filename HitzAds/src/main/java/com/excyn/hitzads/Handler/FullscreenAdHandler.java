@@ -268,10 +268,11 @@ public class FullscreenAdHandler extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(closeBtn.getText().equals("X")) {
-                        finish();
                         if(adEventListener!=null) {
                             adEventListener.onAdClosed();
                         }
+                        closeAd = true;
+                        onBackPressed();
                     }
                     if(closeBtn.getText().equals(">>")) {
                         closeBtn.setText("X");
