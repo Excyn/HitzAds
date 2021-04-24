@@ -60,11 +60,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(closeAd){
-            super.onBackPressed();
-        }else{
-            //do nothing
-        }
+        //do nothing
     }
 
     public void initiateFullScreenAds(Activity activity){
@@ -150,6 +146,14 @@ public class FullscreenAdHandler extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(adEventListener!=null) {
+            adEventListener.onAdClosed();
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         closeAd = false;
@@ -183,11 +187,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    closeAd = true;
-                    onBackPressed();
-                    if(adEventListener!=null) {
-                        adEventListener.onAdClosed();
-                    }
+                    finish();
                 }
             });
 
@@ -214,11 +214,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    closeAd = true;
-                    onBackPressed();
-                    if(adEventListener!=null) {
-                        adEventListener.onAdClosed();
-                    }
+                    finish();
                 }
             });
 
@@ -268,11 +264,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(closeBtn.getText().equals("X")) {
-                        closeAd = true;
-                        onBackPressed();
-                        if(adEventListener!=null) {
-                            adEventListener.onAdClosed();
-                        }
+                        finish();
                     }
                     if(closeBtn.getText().equals(">>")) {
                         closeBtn.setText("X");
