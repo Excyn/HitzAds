@@ -183,11 +183,11 @@ public class FullscreenAdHandler extends AppCompatActivity {
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    closeAd = true;
+                    onBackPressed();
                     if(adEventListener!=null) {
                         adEventListener.onAdClosed();
                     }
-                    closeAd = true;
-                    onBackPressed();
                 }
             });
 
@@ -214,11 +214,11 @@ public class FullscreenAdHandler extends AppCompatActivity {
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    closeAd = true;
+                    onBackPressed();
                     if(adEventListener!=null) {
                         adEventListener.onAdClosed();
                     }
-                    closeAd = true;
-                    onBackPressed();
                 }
             });
 
@@ -268,11 +268,11 @@ public class FullscreenAdHandler extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(closeBtn.getText().equals("X")) {
+                        closeAd = true;
+                        onBackPressed();
                         if(adEventListener!=null) {
                             adEventListener.onAdClosed();
                         }
-                        closeAd = true;
-                        onBackPressed();
                     }
                     if(closeBtn.getText().equals(">>")) {
                         closeBtn.setText("X");
