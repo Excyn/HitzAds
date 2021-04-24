@@ -126,7 +126,9 @@ public class BannerAdHandler extends FrameLayout {
 
             Log.d("HitzAds",adObject.getBody());
             bannerBody.setVisibility(VISIBLE);
-            Glide.with(mContext).load(adObject.getImage_url()).into(adImage);
+            if(mContext!=null) {
+                Glide.with(mContext.getApplicationContext()).load(adObject.getImage_url()).into(adImage);
+            }
             adTitle.setText(adObject.getTitle());
             adContent.setText(adObject.getBody());
             if(adEventListener!=null) {
@@ -150,7 +152,9 @@ public class BannerAdHandler extends FrameLayout {
 
             Log.d("HitzAds",adObject.getBody());
             bannerBodyLarge.setVisibility(VISIBLE);
-            Glide.with(mContext).load(adObject.getImage_url()).into(adImageLarge);
+            if(mContext!=null) {
+                Glide.with(mContext.getApplicationContext()).load(adObject.getImage_url()).into(adImageLarge);
+            }
             adTitleLarge.setText(adObject.getTitle());
             adContentLarge.setText(adObject.getBody());
             if(adEventListener!=null) {
@@ -171,7 +175,9 @@ public class BannerAdHandler extends FrameLayout {
             largeBannerLayout.setVisibility(GONE);
             bannerImageLayout.setVisibility(VISIBLE);
             largeBannerImageLayout.setVisibility(GONE);
-            Glide.with(mContext).load(adObject.getImage_url()).into(adFullImage);
+            if(mContext!=null) {
+                Glide.with(mContext.getApplicationContext()).load(adObject.getImage_url()).into(adFullImage);
+            }
             if(adEventListener!=null) {
                 adEventListener.onAdLoad();
             }
@@ -190,7 +196,9 @@ public class BannerAdHandler extends FrameLayout {
             largeBannerLayout.setVisibility(GONE);
             bannerImageLayout.setVisibility(GONE);
             largeBannerImageLayout.setVisibility(VISIBLE);
-            Glide.with(mContext).load(adObject.getImage_url()).into(adFullImageLarge);
+            if(mContext!=null) {
+                Glide.with(mContext.getApplicationContext()).load(adObject.getImage_url()).into(adFullImageLarge);
+            }
             if(adEventListener!=null) {
                 adEventListener.onAdLoad();
             }
