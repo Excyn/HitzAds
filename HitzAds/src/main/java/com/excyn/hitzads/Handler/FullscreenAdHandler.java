@@ -32,7 +32,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
     private static AdObject adObject;
     private Activity activity;
 
-    private IAdEventListener adEventListener;
+    private static IAdEventListener adEventListener;
     private LinearLayout fullDownloadLayout, fullVideoBody, fullImageLayout;
     private RelativeLayout fullVideoLayout;
     private ImageView fullscreenDownloadImage, fullscreenImage;
