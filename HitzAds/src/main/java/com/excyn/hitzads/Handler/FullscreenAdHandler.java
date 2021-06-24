@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,15 +32,18 @@ import com.excyn.hitzads.Request.AdRequest;
 public class FullscreenAdHandler extends AppCompatActivity {
 
     private static AdObject adObject;
+    private static String closeButtonText;
+    private static int closeButtonTextSize;
     private Activity activity;
 
-    private static IAdEventListener adEventListener;
+    private IAdEventListener adEventListener;
     private LinearLayout fullDownloadLayout, fullVideoBody, fullImageLayout;
-    private RelativeLayout fullVideoLayout;
+    private RelativeLayout fullVideoLayout, fullWebLayout;
     private ImageView fullscreenDownloadImage, fullscreenImage;
     private VideoView fullscreenVideo;
     private Button adButton,adButtonVideo,closeBtn;
     private TextView adTitle, adContent,adTitleVideo, adContentVideo;
+    private WebView adWebView;
 
     private static boolean closeAd = false;
 
@@ -86,17 +91,23 @@ public class FullscreenAdHandler extends AppCompatActivity {
         fullImageLayout = findViewById(R.id.fullscreen_image_view);
         fullscreenImage = findViewById(R.id.fullscreen_image);
 
+        fullWebLayout = findViewById(R.id.fullscreen_web);
+        adWebView = findViewById(R.id.webview);
+
         closeBtn = findViewById(R.id.fullscreen_close);
 
     }
 
+    public void changeCloseButton(String text,int size){
+        closeButtonText = text;
+        closeButtonTextSize = size;
+    }
 
     public void loadAd(AdObject adObject) {
         this.adObject = adObject;
         if (adEventListener != null) {
             adEventListener.onAdLoad();
         }
-
     }
 
     public void loadAd(AdRequest adRequest) {
@@ -157,10 +168,15 @@ public class FullscreenAdHandler extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         closeAd = false;
+        if(closeButtonText.isEmpty()){ closeButtonText = "X"; }
+        if(closeButtonTextSize == 0 ){ closeButtonTextSize = 12; }
+        closeBtn.setText(closeButtonText);
+        closeBtn.setTextSize(Float.parseFloat(Integer.toString(closeButtonTextSize)));
         if (adObject.adType.equals(AdType.FULLSCREEN_DOWNLOAD)) {
             fullDownloadLayout.setVisibility(View.VISIBLE);
             fullImageLayout.setVisibility(View.GONE);
             fullVideoLayout.setVisibility(View.GONE);
+            fullWebLayout.setVisibility(View.GONE);
 
             Log.d("HitzAds", adObject.getBody());
             Glide.with(FullscreenAdHandler.this).load(adObject.getImage_url()).into(fullscreenDownloadImage);
@@ -183,7 +199,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                 }
             });
 
-            closeBtn.setText("X");
+            closeBtn.setText(closeButtonText);
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -195,6 +211,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
             fullDownloadLayout.setVisibility(View.GONE);
             fullImageLayout.setVisibility(View.VISIBLE);
             fullVideoLayout.setVisibility(View.GONE);
+            fullWebLayout.setVisibility(View.GONE);
 
             Glide.with(FullscreenAdHandler.this).load(adObject.getImage_url()).into(fullscreenImage);
             fullscreenImage.setOnClickListener(new View.OnClickListener() {
@@ -210,7 +227,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                 }
             });
 
-            closeBtn.setText("X");
+            closeBtn.setText(closeButtonText);
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -223,6 +240,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
             fullDownloadLayout.setVisibility(View.GONE);
             fullImageLayout.setVisibility(View.GONE);
             fullVideoLayout.setVisibility(View.VISIBLE);
+            fullWebLayout.setVisibility(View.GONE);
 
             Log.d("HitzAds", adObject.getBody());
             if(!adObject.getVideo_url().equals("")) {
@@ -231,7 +249,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                 closeBtn.setText(">>");
             }else{
                 fullscreenVideo.setVisibility(View.GONE);
-                closeBtn.setText("X");
+                closeBtn.setText(closeButtonText);
                 fullVideoBody.setVisibility(View.VISIBLE);
             }
             adTitleVideo.setText(adObject.getTitle());
@@ -255,7 +273,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
 
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    closeBtn.setText("X");
+                    closeBtn.setText(closeButtonText);
                     fullVideoBody.setVisibility(View.VISIBLE);
                 }
             });
@@ -263,17 +281,32 @@ public class FullscreenAdHandler extends AppCompatActivity {
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(closeBtn.getText().equals("X")) {
+                    if(closeBtn.getText().equals(closeButtonText)) {
                         finish();
                     }
                     if(closeBtn.getText().equals(">>")) {
-                        closeBtn.setText("X");
+                        closeBtn.setText(closeButtonText);
                         fullVideoBody.setVisibility(View.VISIBLE);
                         if(adEventListener!=null) {
                             adEventListener.onAdSkipped();
                         }
                         fullscreenVideo.pause();
                     }
+                }
+            });
+        } else if (adObject.adType.equals(AdType.FULLSCREEN_WEB)) {
+            fullDownloadLayout.setVisibility(View.GONE);
+            fullImageLayout.setVisibility(View.GONE);
+            fullVideoLayout.setVisibility(View.GONE);
+            fullWebLayout.setVisibility(View.VISIBLE);
+
+            adWebView.loadUrl(adObject.getWeb_ad_link());
+
+            closeBtn.setText(closeButtonText);
+            closeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
                 }
             });
         }

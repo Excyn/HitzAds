@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("HitzAdEvent","closed");
                     }
                 });
+                fullscreenAdHandler.changeCloseButton("X",14);
                 fullscreenAdHandler.loadAd(new FullscreenAdObject().getTestAd(AdType.FULLSCREEN_VIDEO));
                 //fullscreenAdHandler.loadAd(new AdRequest(getApplicationContext(),"https://jsonkeeper.com/b/B6ZE"));
 

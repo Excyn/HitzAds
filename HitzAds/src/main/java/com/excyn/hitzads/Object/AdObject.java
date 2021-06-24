@@ -14,23 +14,9 @@ public abstract class AdObject implements IAdObject {
     public String button_text;
     public String button_color;
     public String button_text_color;
+    private String web_ad_link;
 
-    public AdObject(){
-
-    }
-
-    public AdObject(String adId, AdType adType, String title, String body, String image_url, String video_url, String link, String button_text, String button_color, String button_text_color) {
-        this.adId = adId;
-        this.adType = adType;
-        this.title = title;
-        this.body = body;
-        this.image_url = image_url;
-        this.video_url = video_url;
-        this.link = link;
-        this.button_text = button_text;
-        this.button_color = button_color;
-        this.button_text_color = button_text_color;
-    }
+    public AdObject(){}
 
     public String getAdId() {
         return adId;
@@ -110,5 +96,13 @@ public abstract class AdObject implements IAdObject {
 
     public void setButton_text_color(String button_text_color) {
         this.button_text_color = button_text_color;
+    }
+
+    public String getWeb_ad_link() {
+        return web_ad_link;
+    }
+
+    public void setWeb_ad_link(String web_ad_link) {
+        this.web_ad_link = web_ad_link;
     }
 }

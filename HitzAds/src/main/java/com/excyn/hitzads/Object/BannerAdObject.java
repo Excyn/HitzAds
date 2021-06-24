@@ -8,7 +8,6 @@ public class BannerAdObject extends AdObject{
     }
 
     public BannerAdObject(String adId, AdType adType, String title, String body, String image_url, String video_url, String link, String button_text, String button_color, String button_text_color) {
-        super(adId, adType, title, body, image_url, video_url, link, button_text, button_color, button_text_color);
     }
 
     @Override
@@ -41,6 +40,11 @@ public class BannerAdObject extends AdObject{
             adObject.setAdType(AdType.BANNER_LARGE_IMAGE);
             adObject.setImage_url("https://picsum.photos/720/100");
             adObject.setLink("https://www.google.com/");
+            return adObject;
+        }else if(adType.equals(AdType.BANNER_WEB)){
+            adObject.setAdId("1");
+            adObject.setAdType(AdType.BANNER_WEB);
+            adObject.setWeb_ad_link("https://github.com/Excyn/HitzAds");
             return adObject;
         }
         return null;

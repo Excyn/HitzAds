@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,10 +27,11 @@ public class BannerAdHandler extends FrameLayout {
     private static AdObject adObject;
     private LayoutInflater layoutInflater;
 
-    private LinearLayout bannerLayout, largeBannerLayout, bannerImageLayout, largeBannerImageLayout;
+    private LinearLayout bannerLayout, largeBannerLayout, bannerImageLayout, largeBannerImageLayout, bannerWebLayout;
     private LinearLayout bannerBody, bannerBodyLarge;
     private ImageView adImage,adImageLarge,adFullImage, adFullImageLarge;
     private TextView adTitle, adContent,adTitleLarge, adContentLarge;
+    private WebView adWebview;
 
 
     public BannerAdHandler (Context context) {
@@ -79,6 +81,8 @@ public class BannerAdHandler extends FrameLayout {
         largeBannerImageLayout = findViewById(R.id.banner_image_full_large);
         adFullImageLarge = findViewById(R.id.banner_full_image_large);
 
+        bannerWebLayout = findViewById(R.id.banner_web);
+        adWebview = findViewById(R.id.webview);
     }
 
     public void loadAd(AdObject adObject) {
@@ -123,6 +127,7 @@ public class BannerAdHandler extends FrameLayout {
             largeBannerLayout.setVisibility(GONE);
             bannerImageLayout.setVisibility(GONE);
             largeBannerImageLayout.setVisibility(GONE);
+            bannerWebLayout.setVisibility(GONE);
 
             Log.d("HitzAds",adObject.getBody());
             bannerBody.setVisibility(VISIBLE);
@@ -149,6 +154,7 @@ public class BannerAdHandler extends FrameLayout {
             largeBannerLayout.setVisibility(VISIBLE);
             bannerImageLayout.setVisibility(GONE);
             largeBannerImageLayout.setVisibility(GONE);
+            bannerWebLayout.setVisibility(GONE);
 
             Log.d("HitzAds",adObject.getBody());
             bannerBodyLarge.setVisibility(VISIBLE);
@@ -175,6 +181,7 @@ public class BannerAdHandler extends FrameLayout {
             largeBannerLayout.setVisibility(GONE);
             bannerImageLayout.setVisibility(VISIBLE);
             largeBannerImageLayout.setVisibility(GONE);
+            bannerWebLayout.setVisibility(GONE);
             if(mContext!=null) {
                 Glide.with(mContext.getApplicationContext()).load(adObject.getImage_url()).into(adFullImage);
             }
@@ -196,6 +203,7 @@ public class BannerAdHandler extends FrameLayout {
             largeBannerLayout.setVisibility(GONE);
             bannerImageLayout.setVisibility(GONE);
             largeBannerImageLayout.setVisibility(VISIBLE);
+            bannerWebLayout.setVisibility(GONE);
             if(mContext!=null) {
                 Glide.with(mContext.getApplicationContext()).load(adObject.getImage_url()).into(adFullImageLarge);
             }
@@ -207,6 +215,24 @@ public class BannerAdHandler extends FrameLayout {
                 public void onClick(View view) {
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(adObject.getLink()));
                     mContext.startActivity(browserIntent);
+                    if(adEventListener!=null) {
+                        adEventListener.onAdClicked();
+                    }
+                }
+            });
+        }else if(adObject.adType.equals(AdType.BANNER_WEB)){
+            bannerLayout.setVisibility(GONE);
+            largeBannerLayout.setVisibility(GONE);
+            bannerImageLayout.setVisibility(GONE);
+            largeBannerImageLayout.setVisibility(GONE);
+            bannerWebLayout.setVisibility(VISIBLE);
+            adWebview.loadUrl(adObject.getWeb_ad_link());
+            if(adEventListener!=null) {
+                adEventListener.onAdLoad();
+            }
+            adWebview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     if(adEventListener!=null) {
                         adEventListener.onAdClicked();
                     }

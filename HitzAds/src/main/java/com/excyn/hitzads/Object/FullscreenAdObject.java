@@ -7,10 +7,6 @@ public class FullscreenAdObject extends AdObject{
     public FullscreenAdObject() {
     }
 
-    public FullscreenAdObject(String adId, AdType adType, String title, String body, String image_url, String video_url, String link, String button_text, String button_color, String button_text_color) {
-        super(adId, adType, title, body, image_url, video_url, link, button_text, button_color, button_text_color);
-    }
-
     @Override
     public AdObject getTestAd(AdType adType) {
         AdObject adObject = new FullscreenAdObject();
@@ -42,6 +38,11 @@ public class FullscreenAdObject extends AdObject{
             adObject.setButton_color("#FF7171");
             adObject.setButton_text_color("#ffffff");
             adObject.setLink("https://github.com/Excyn/HitzAds");
+            return adObject;
+        } else if(adType.equals(AdType.FULLSCREEN_WEB)) {
+            adObject.setAdId("1");
+            adObject.setAdType(AdType.FULLSCREEN_WEB);
+            adObject.setWeb_ad_link("https://github.com/Excyn/HitzAds");
             return adObject;
         }
         return null;

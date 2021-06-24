@@ -82,23 +82,48 @@ public class AdRequest {
                                          adType = AdType.FULLSCREEN_VIDEO;
                                          adObject = new FullscreenAdObject();
                                          break;
+                                     case "FULLSCREEN_WEB":
+                                         adType = AdType.FULLSCREEN_WEB;
+                                         adObject = new FullscreenAdObject();
+                                         break;
                                  }
                                 adObject.setAdType(adType);
-                                adObject.setAdId(jsonObject.getString("id"));
-                                adObject.setTitle(jsonObject.getString("title"));
-                                adObject.setBody(jsonObject.getString("body"));
-                                adObject.setImage_url(jsonObject.getString("image_url"));
-                                adObject.setVideo_url(jsonObject.getString("video_url"));
-                                adObject.setLink(jsonObject.getString("link"));
-                                adObject.setButton_text(jsonObject.getString("button_text"));
-                                adObject.setButton_color(jsonObject.getString("button_color"));
-                                adObject.setButton_text_color(jsonObject.getString("button_text_color"));
+                                if(jsonObject.has("id")) {
+                                    adObject.setAdId(jsonObject.getString("id"));
+                                }
+                                if(jsonObject.has("title")) {
+                                    adObject.setTitle(jsonObject.getString("title"));
+                                }
+                                if(jsonObject.has("body")) {
+                                    adObject.setBody(jsonObject.getString("body"));
+                                }
+                                if(jsonObject.has("image_url")) {
+                                    adObject.setImage_url(jsonObject.getString("image_url"));
+                                }
+                                if(jsonObject.has("video_url")) {
+                                    adObject.setVideo_url(jsonObject.getString("video_url"));
+                                }
+                                if(jsonObject.has("link")) {
+                                    adObject.setLink(jsonObject.getString("link"));
+                                }
+                                if(jsonObject.has("button_text")) {
+                                    adObject.setButton_text(jsonObject.getString("button_text"));
+                                }
+                                if(jsonObject.has("button_color")) {
+                                    adObject.setButton_color(jsonObject.getString("button_color"));
+                                }
+                                if(jsonObject.has("button_text_color")) {
+                                    adObject.setButton_text_color(jsonObject.getString("button_text_color"));
+                                }
+                                if(jsonObject.has("web_ad_link")) {
+                                    adObject.setWeb_ad_link(jsonObject.getString("web_ad_link"));
+                                }
 
                                 if(type.equals("BANNER_TEXT") || type.equals("BANNER_LARGE_TEXT") || type.equals("BANNER_IMAGE") || type.equals("BANNER_LARGE_IMAGE")){
                                     bannerAdObjects.add(adObject);
                                 }
 
-                                if(type.equals("FULLSCREEN_DOWNLOAD") || type.equals("FULLSCREEN_IMAGE") || type.equals("FULLSCREEN_VIDEO")){
+                                if(type.equals("FULLSCREEN_DOWNLOAD") || type.equals("FULLSCREEN_IMAGE") || type.equals("FULLSCREEN_VIDEO") || type.equals("FULLSCREEN_WEB")){
                                     fullscreenAdObjects.add(adObject);
                                 }
 
