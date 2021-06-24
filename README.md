@@ -21,13 +21,13 @@ HitzAds currently support following types of ads
 			maven { url 'https://jitpack.io' }
 		}
 	}dependencies {
-	        implementation 'com.github.Excyn:HitzAds:6fbdd74e65'
+	        implementation 'com.github.Excyn:HitzAds:c3e9e72ccb'
 	}
   
 ## Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.Excyn:HitzAds:4918f01f9d'
+	        implementation 'com.github.Excyn:HitzAds:c3e9e72ccb'
 	}
 
 ## Step 3 Build the project and start using
