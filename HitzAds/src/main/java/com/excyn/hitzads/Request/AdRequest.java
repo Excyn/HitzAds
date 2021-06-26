@@ -70,6 +70,10 @@ public class AdRequest {
                                          adType = AdType.BANNER_LARGE_IMAGE;
                                          adObject = new BannerAdObject();
                                          break;
+                                     case "BANNER_WEB":
+                                         adType = AdType.BANNER_WEB;
+                                         adObject = new BannerAdObject();
+                                         break;
                                      case "FULLSCREEN_DOWNLOAD":
                                          adType = AdType.FULLSCREEN_DOWNLOAD;
                                          adObject = new FullscreenAdObject();
@@ -119,7 +123,7 @@ public class AdRequest {
                                     adObject.setWeb_ad_link(jsonObject.getString("web_ad_link"));
                                 }
 
-                                if(type.equals("BANNER_TEXT") || type.equals("BANNER_LARGE_TEXT") || type.equals("BANNER_IMAGE") || type.equals("BANNER_LARGE_IMAGE")){
+                                if(type.equals("BANNER_TEXT") || type.equals("BANNER_LARGE_TEXT") || type.equals("BANNER_IMAGE") || type.equals("BANNER_LARGE_IMAGE") || type.equals("BANNER_WEB")){
                                     bannerAdObjects.add(adObject);
                                 }
 

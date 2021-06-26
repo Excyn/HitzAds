@@ -36,7 +36,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
     private static int closeButtonTextSize;
     private Activity activity;
 
-    private IAdEventListener adEventListener;
+    public static IAdEventListener adEventListener;
     private LinearLayout fullDownloadLayout, fullVideoBody, fullImageLayout;
     private RelativeLayout fullVideoLayout, fullWebLayout;
     private ImageView fullscreenDownloadImage, fullscreenImage;
@@ -195,7 +195,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                         adEventListener.onAdClicked();
                     }
                     closeAd = true;
-                    onBackPressed();
+                    finish();
                 }
             });
 
@@ -203,6 +203,9 @@ public class FullscreenAdHandler extends AppCompatActivity {
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if(adEventListener!=null) {
+                        adEventListener.onAdClosed();
+                    }
                     finish();
                 }
             });
@@ -223,7 +226,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                         adEventListener.onAdClicked();
                     }
                     closeAd = true;
-                    onBackPressed();
+                    finish();
                 }
             });
 
@@ -231,6 +234,9 @@ public class FullscreenAdHandler extends AppCompatActivity {
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if(adEventListener!=null) {
+                        adEventListener.onAdClosed();
+                    }
                     finish();
                 }
             });
@@ -266,7 +272,7 @@ public class FullscreenAdHandler extends AppCompatActivity {
                         adEventListener.onAdClicked();
                     }
                     closeAd = true;
-                    onBackPressed();
+                    finish();
                 }
             });
             fullscreenVideo.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -282,6 +288,9 @@ public class FullscreenAdHandler extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(closeBtn.getText().equals(closeButtonText)) {
+                        if(adEventListener!=null) {
+                            adEventListener.onAdClosed();
+                        }
                         finish();
                     }
                     if(closeBtn.getText().equals(">>")) {
@@ -306,6 +315,9 @@ public class FullscreenAdHandler extends AppCompatActivity {
             closeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if(adEventListener!=null) {
+                        adEventListener.onAdClosed();
+                    }
                     finish();
                 }
             });
@@ -313,6 +325,6 @@ public class FullscreenAdHandler extends AppCompatActivity {
     }
 
     public void setAdEventListener(IAdEventListener adEventListener){
-        this.adEventListener = adEventListener;
+        FullscreenAdHandler.adEventListener = adEventListener;
     }
 }
